@@ -1,0 +1,71 @@
+﻿<Window x:Class="MechanicalPosSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MechanicalPosSystem"
+        mc:Ignorable="d"
+        Title="Mechanical POS - Cashier System" Height="650" Width="1050"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <!--Left side: Parts & Categories-->
+            <ColumnDefinition Width="2*" />
+            <!--Right side: Cart & Checkout-->
+            <ColumnDefinition Width="1.2*" />
+            <!--<ColumnDefinition Width="7*" />-->
+        </Grid.ColumnDefinitions>
+        
+        <!-- Products Catalog Section -->
+        <Border Grid.Column="0" Margin="0,0,10,0" BorderBrush="#DDD" BorderThickness="1" CornerRadius="4" Padding="12">
+            <DockPanel>
+
+                <!--Real-time Date and Time Display-->
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
+                    <TextBlock x:Name="DateText" Text="Date: --" FontSize="14" FontWeight="SemiBold" Foreground="#555" Margin="0,0,15,0"/>
+                    <TextBlock x:Name="TimeText" Text="Time: --" FontSize="14" FontWeight="SemiBold" Foreground="#555" Margin="0,0,15,0"/>
+                </StackPanel>
+                <TextBlock DockPanel.Dock="Top" Text="Spare Parts Catalog" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" />
+
+                <!-- Quick Search Bar-->
+                <TextBox DockPanel.Dock="Top" x:Name="SearchBox" Height="35" VerticalContentAlignment="Center" Padding="8,0" Margin="0,0,0,10"
+                              FontSize="14" Text="Search by Part Name or Code..."/>
+
+                <!--Category Filter Buttons-->
+                <UniformGrid Columns="3" DockPanel.Dock="Top" Margin="0,0,0,10">
+                    <Button Content="ကူဘိုတာ" Height="45" Margin="2" FontSize="13" FontWeight="SemiBold" Click="Category_Click"/>
+                    <Button Content="တရူတ်နီ" Height="45" Margin="2" FontSize="13" FontWeight="SemiBold" Click="Category_Click"/>
+                    <Button Content="ဆိုင်ကယ်" Height="45" Margin="2" FontSize="13" FontWeight="SemiBold" Click="Category_Click"/>
+                </UniformGrid>
+
+                <!--Parts Display Table-->
+                <DataGrid x:Name="PartsDataGrids" AutoGenerateColumns="True" IsReadOnly="True" GridLinesVisibility="Horizontal" HeadersVisibility="Column"/>
+            </DockPanel>
+        </Border>
+        
+        <!--Cart and Section-->
+        <Border Grid.Column="1" BorderBrush="#DDD" BorderThickness="1" CornerRadius="4" Padding="12" Background="#F8F9FA">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top" Text="Current Cart (Cash)" FontSize="20" FontWeight="Bold" Foreground="#333" Margin="0,0,0,10"/>
+                
+                <!--Downer Casher-->
+
+                <StackPanel DockPanel.Dock="Bottom" Margin="0,10,0,0">
+                    <Separator Foreground="Aqua" Margin="0,0,0,10"/>
+
+                    <DockPanel Margin="0,0">
+                        <TextBlock Text="Total Amount:" FontSize="18" FontWeight="Bold"/>
+                        <TextBlock x:Name="TotalText" Text="0円" FontSize="24" FontWeight="Bold" Foreground="#28A745" HorizontalAlignment="Right"/>
+                    </DockPanel>
+
+                    <!--‌ေButton for Checkout-->
+                    <Button Content="会計" Height="55" Background="#28A745" Foreground="White" FontSize="20" FontWeight="Bold" Margin="0,10,0,0" Click="Checkout_Click"/>
+                </StackPanel>
+                   
+                <!--Cart DataGrid-->
+                <DataGrid x:Name="CartDataGrid" AutoGenerateColumns="True" GridLinesVisibility="Horizontal" HeadersVisibility="Column"/>
+            </DockPanel>
+            
+        </Border>
+    </Grid>
+</Window>
